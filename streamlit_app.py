@@ -11,6 +11,8 @@ OPEN_AI_API_KEY = st.sidebar.text_input("🔑 OpenAI API Key", type="password")
 def save_data(org_name, data):
     st.write(data)
     filename = f"saved_files/{org_name}.json"
+    if not os.path.exists("saved_files"):
+        os.makedirs("saved_files")
     with open(filename, "w") as f:
         json.dump(data, f)
 
@@ -43,7 +45,23 @@ def generate_prefill_data(prompt_text):
 def main():
     st.title("⚡ Organization Data Entry")
 
-    names = st.sidebar.text_area("📋 Organization Names", value="Organization 1\nOrganization 2\nOrganization 3", height=600)
+    names = st.sidebar.text_area(
+        "📋 Organization Names",
+        value="""Greenpeace
+Sierra Club
+The Nature Conservancy
+National Audubon Society
+Climate Action Network
+Natural Resources Defense Council
+Rainforest Alliance
+C40 Cities Climate Leadership Group
+Environmental Defense Fund
+Conservation International
+Project Drawdown
+Ocean Conservancy
+""",
+        height=400
+    )
     org_list = names.split("\n")
 
     if not org_list:
