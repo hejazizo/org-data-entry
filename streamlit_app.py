@@ -107,7 +107,9 @@ Ocean Conservancy
     else:
         data = load_data(org_name)
 
+    st.header("📊 Organization Data")
     data["Organization Name"] = org_name
+    st.write(f'Organization Name: **{org_name}**')
     data["About the Organization"] = st.text_area("📄 About the Organization", value=data.get("About the Organization", ""))
     data["Year Founded"] = st.text_input("📅 Year Founded", value=data.get("Year Founded", ""))
 
