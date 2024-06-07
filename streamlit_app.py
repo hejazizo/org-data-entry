@@ -9,7 +9,6 @@ from constants import PROMPT_TEXT
 OPEN_AI_API_KEY = st.sidebar.text_input("🔑 OpenAI API Key", type="password")
 
 def save_data(org_name, data):
-    st.write(data)
     filename = f"saved_files/{org_name}.json"
     if not os.path.exists("saved_files"):
         os.makedirs("saved_files")
