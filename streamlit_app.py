@@ -3,7 +3,6 @@ import json
 import os
 from openai import OpenAI
 import yaml
-from constants import PROMPT_TEXT
 
 
 OPEN_AI_API_KEY = st.sidebar.text_input("🔑 OpenAI API Key", type="password")
@@ -92,7 +91,10 @@ Ocean Conservancy
             next_org()
 
 
+    PROMPT_TEXT = open('prompt.txt', 'r').read()
     prompt_text = st.sidebar.text_area("📝 Prompt Text", value=PROMPT_TEXT.replace('{{org_name}}', org_name).strip(), height=600)
+    with open('prompt.txt', 'w') as f:
+        f.write(prompt_text)
 
     if st.button("🤖 Prefill with LLM", use_container_width=True):
         llm_response = generate_prefill_data(prompt_text)
