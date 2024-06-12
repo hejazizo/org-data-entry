@@ -98,10 +98,10 @@ def main():
 
     model_name = st.sidebar.selectbox("🤖 LLM Model", ['gpt-4-1106-preview', 'gpt-4', 'gpt-3.5-turbo', 'gpt-3.5-turbo-0125'], index=0)
     PROMPT_TEXT = open('prompt.txt', 'r').read()
-    prompt_text = st.sidebar.text_area("📝 Prompt Text", value=PROMPT_TEXT.replace('<Organization Name>', org_name).strip(), height=600)
     with open('prompt.txt', 'w') as f:
-        f.write(prompt_text)
+        f.write(PROMPT_TEXT)
         st.sidebar.success("Prompt text saved successfully!", icon="✅")
+    prompt_text = st.sidebar.text_area("📝 Prompt Text", value=PROMPT_TEXT.replace('<Organization Name>', org_name).strip(), height=600)
 
     if st.button("🤖 Prefill with LLM", use_container_width=True):
         llm_response = generate_prefill_data(model_name, prompt_text)
