@@ -144,6 +144,7 @@ Technology Informatics Design Endeavour
     prompt_text = st.sidebar.text_area("📝 Prompt Text", value=PROMPT_TEXT.replace('{{org_name}}', org_name).strip(), height=600)
     with open('prompt.txt', 'w') as f:
         f.write(prompt_text)
+        st.sidebar.success("Prompt text saved successfully!", icon="✅")
 
     if st.button("🤖 Prefill with LLM", use_container_width=True):
         llm_response = generate_prefill_data(prompt_text)
