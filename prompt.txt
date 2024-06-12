@@ -1,5 +1,3 @@
-I apologize for the oversight. Here's the updated prompt with the context that the organization works on climate change:
-
 Extract the following information about <Organization Name>, an organization working on climate change, in YAML format:
 
 Organization Name: <Organization Name>
