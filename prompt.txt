@@ -29,8 +29,6 @@ Papers and books published:
 Link to the Website:
 Data Sources:
 
-If any information is not available for a field, leave that field blank. 
-
 For fields that can have multiple values, separate the values with semicolons.
 
 Accuracy is very important. Only include information you are confident is factual and from reliable sources. Cite the sources you used in the Data Sources field.
