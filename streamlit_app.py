@@ -45,18 +45,67 @@ def main():
 
     names = st.sidebar.text_area(
         "📋 Organization Names",
-        value="""Greenpeace
+        value="""Pacific Peoples Partnership
+West Coast Climate Action Network
+David Suzuki Foundation 
+Ecojustice Canada
+CARE Climate Change
+Seagrass Project 
+World Wide Fund for Nature
+Climate Foundation 
+Earth Island Institute
+Rainforest Action Network 
+Friends of the Earth
+Global Footprint Network 
+Depave
+Rockefeller Family Fund
+Southern Environmental Law Center
+Union of Concerned Scientists
+Earth Day Network 
+Fairtrade International 
+Ceres
+Earthworks 
+The Jane Goodall Institute
+5 Gyres Institute
+American Forests
+The Carbon Underground 
+Heifer International
+Green Cross International 
+Climate Action Network Europe 
+Groundwork
+African Climate and Development Initiative
+Institute for Climate and Sustainable Cities
+Amnesty International
+Yukon Conservation Society
+Red Cross Red Crescent Climate Center
+Laudato Si' Movement
+350.org
+Greenpeace International 
 Sierra Club
 The Nature Conservancy
 National Audubon Society
 Climate Action Network
-Natural Resources Defense Council
-Rainforest Alliance
-C40 Cities Climate Leadership Group
-Environmental Defense Fund
-Conservation International
+Natural Resources Defense Council 
+Rainforest Alliance 
+C40 Cities Climate Leadership Group 
+Environmental Defense Fund 
+Conservation International 
 Project Drawdown
 Ocean Conservancy
+World Resources Institute
+BirdLife Europe & Central Asia
+Earthlife Africa
+Kenya Climate Change Working Group
+Observatorio del Clima
+Climalab
+Gulf Research Center
+Central Himalayan Environment Association
+Gansu "Green Camel Bell" Environment and Development Center
+Chongqing Renewable Energy Society
+Yangtze Delta Ecology Society
+Kiko Network
+Arid Lands Environment Centre
+Technology Informatics Design Endeavour
 """,
         height=400
     )
