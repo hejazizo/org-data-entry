@@ -1,63 +1,29 @@
-Generate prefill data for the organization '{{org_name}}' in a valid YAML format that can be converted to a json dictionary. Include these fields and keep the field names as they are, don't change them to lower case with underscore:
+Generate prefill data for the organization '{{org_name}}' in a valid YAML format that can be converted to a json dictionary. Include these fields and keep the field names as they are, don't change them to lower case with underscore. Only use the information on the organization's website and their 2023 annual reports. If you can't find the information, write "NOT_FOUND". Do not output anything else. To separate text, use semicolons.
 - Organization Name
-- About the Organization
+- About the Organization: The description should highlight their main activities and impact, and be less than 50 words.
 - Year Founded
-- Head Office Location
+- Head Office Location: The location should be in the format: City/Province.
 - Country
-- Geographic Reach
-- Organization Size - Number of members / employees
-- Organization Size - Country Chapters
-- Area of Expertise
+- Geographic Reach: The reach could either be Local, Regional (neighbors or in the same continent), or International.
+- Organization Size - Number of members / employees: The size could either be 0-25, 26-50, 51-100, 101-1000, or 1000+, not including volunteers.
+- Organization Size - Country Chapters: Write the number of country chapters the organization has.
+- Area of Expertise: The main area of expertise or focus of the organization.
 - Area of Expertise Theme
 - Issue Focus Areas
 - IPCC Theme / Topic Context
-- Partner Organizations
-- Total Funding
-- Funding Sources
+- Partner Organizations: Organizations that the entity partners with.
+- Total Funding: The total amount of funding received by the organization. 
+- Funding Sources: List of sources from which the organization receives funding.
 - Government Funding
 - Private Funding
-- Founder
-- Board Members
+- Founder: Names of the founders of the organization.
+- Board Members: Names of the board members, not staff.
 - Connection to First-response Organizations / Climate Emergency Relief Support
-- Academic Institute Collaborations
-- Current AI Related Project
+- Academic Institute Collaborations: List of academic institutions the organization collaborates with.
+- Current AI Related Project: List of current projects involving AI.
 - Potential for AI research integration
-- Campaigns
-- Conferences and Event Participation
-- Papers and books published
+- Campaigns: List of campaigns the organization is involved in.
+- Conferences and Event Participation: List of conferences, events, webinars and seminars the organization participates in.
+- Papers and books published: List of publications by the organization.
 - Link to the Website
 - Data Sources
-
-
-"""
-Generate prefill data for the organization '{{org_name}}' in a valid YAML format that can be converted to a json dictionary. 
-Include these fields and keep the field names as they are, don't change them to lower case with underscore:
-- Organization Name
-- About the Organization
-- Year Founded
-- Head Office Location
-- Country
-- Geographic Reach
-- Organization Size - Number of members / employees
-- Organization Size - Country Chapters
-- Area of Expertise
-- Area of Expertise Theme
-- Issue Focus Areas
-- IPCC Theme / Topic Context
-- Partner Organizations
-- Total Funding
-- Funding Sources
-- Government Funding
-- Private Funding
-- Founder
-- Board Members
-- Connection to First-response Organizations / Climate Emergency Relief Support
-- Academic Institute Collaborations
-- Current AI Related Project
-- Potential for AI research integration
-- Campaigns
-- Conferences and Event Participation
-- Papers and books published
-- Link to the Website
-- Data Sources
-"""
