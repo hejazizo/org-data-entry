@@ -3,9 +3,12 @@ import json
 import os
 from openai import OpenAI
 import yaml
+import re
 
 
-OPEN_AI_API_KEY = st.sidebar.text_input("🔑 OpenAI API Key", type="password")
+OPEN_AI_API_KEY = os.getenv("OPEN_AI_API_KEY")
+if not OPEN_AI_API_KEY:
+    st.error("Please set your OPEN_AI_API_KEY environment variable.")
 
 def save_data(org_name, data):
     filename = f"saved_files/{org_name}.json"
@@ -21,9 +24,18 @@ def load_data(org_name):
             return json.load(f)
     return {}
 
+def extract_yaml(text):
+    pattern = r"```yaml\n(.*?)```"
+    match = re.search(pattern, text, re.DOTALL)
+
+    if match:
+        yaml_data = match.group(1)
+        return yaml_data.strip()
+    else:
+        return None
+
 @st.cache_resource
-def generate_prefill_data(prompt_text):
-    model_name = "gpt-4"
+def generate_prefill_data(model_name, prompt_text):
     temperature = 0.7
     max_tokens = 1000
 
@@ -84,7 +96,7 @@ def main():
         if st.button("➡️ Next", use_container_width=True):
             next_org()
 
-
+    model_name = st.sidebar.selectbox("🤖 LLM Model", ['gpt-4-1106-preview', 'gpt-4', 'gpt-3.5-turbo', 'gpt-3.5-turbo-0125'], index=0)
     PROMPT_TEXT = open('prompt.txt', 'r').read()
     prompt_text = st.sidebar.text_area("📝 Prompt Text", value=PROMPT_TEXT.replace('{{org_name}}', org_name).strip(), height=600)
     with open('prompt.txt', 'w') as f:
@@ -92,11 +104,11 @@ def main():
         st.sidebar.success("Prompt text saved successfully!", icon="✅")
 
     if st.button("🤖 Prefill with LLM", use_container_width=True):
-        llm_response = generate_prefill_data(prompt_text)
+        llm_response = generate_prefill_data(model_name, prompt_text)
         with st.expander("🤖 LLM Response"):
             st.write(llm_response)
-        # remove ```yaml and ``` from the generated data
-        data = llm_response.replace("```yaml", "").replace("```", "").strip()
+        # remove ```yaml, ``` and extra text from the generated data
+        data = extract_yaml(llm_response)
         data = yaml.safe_load(data)
         data = json.loads(json.dumps(data))
         with st.expander("📊 Parsed LLM Response"):
