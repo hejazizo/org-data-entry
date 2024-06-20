@@ -1,14 +1,9 @@
 import streamlit as st
 import json
 import os
-from openai import OpenAI
 import yaml
 import re
-
-
-OPEN_AI_API_KEY = os.getenv("OPEN_AI_API_KEY")
-if not OPEN_AI_API_KEY:
-    st.error("Please set your OPEN_AI_API_KEY environment variable.")
+from utils import generate_prefill_data
 
 def save_data(org_name, data):
     filename = f"saved_files/{org_name}.json"
@@ -33,23 +28,6 @@ def extract_yaml(text):
         return yaml_data.strip()
     else:
         return None
-
-@st.cache_resource
-def generate_prefill_data(model_name, prompt_text):
-    temperature = 0.7
-    max_tokens = 1000
-
-    client = OpenAI(api_key=OPEN_AI_API_KEY)
-
-    with st.spinner("🤖 Generating prefill data..."):
-        response = client.chat.completions.create(
-            model=model_name,
-            messages=[{'role': 'user', 'content': prompt_text}],
-            temperature=temperature,
-            max_tokens=max_tokens
-        )
-
-    return response.choices[0].message.content.strip()
 
 
 def main():
@@ -96,7 +74,7 @@ def main():
         if st.button("➡️ Next", use_container_width=True):
             next_org()
 
-    model_name = st.sidebar.selectbox("🤖 LLM Model", ['gpt-4-1106-preview', 'gpt-4', 'gpt-3.5-turbo', 'gpt-3.5-turbo-0125'], index=0)
+    model_name = st.sidebar.selectbox("🤖 LLM Model", ['gpt-4o', 'gpt-4-1106-preview', 'gpt-4', 'gpt-3.5-turbo', 'gpt-3.5-turbo-0125'], index=0)
     PROMPT_TEXT = open('prompt.txt', 'r').read()
     prompt_text = st.sidebar.text_area("📝 Prompt Text", value=PROMPT_TEXT.replace('<Organization Name>', org_name).strip(), height=600)
 
@@ -165,7 +143,6 @@ def main():
 
     save_data(org_name, data)
     st.success("Data saved successfully!", icon="✅")
-
 
 if __name__ == "__main__":
     main()
